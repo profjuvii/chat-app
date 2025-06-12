@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatApp</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <aside class="contact-window">
+    <div class="top-bar contact-bar">
+      <button id="contacts-btn" class="selected-mode"><i class="fa-solid fa-users"></i>All</button>
+      <button id="new-btn"><i class="fa-solid fa-user-plus"></i>New</button>
+    </div>
+
+    <div id="contact-list"></div>
+
+    <div class="logout">
+      <a href="#logout">Log Out</a>
+    </div>
+  </aside>
+
+  <main class="chat-window">
+    <div class="top-bar chat-bar">
+      <button id="back-btn">
+        <i class="fas fa-chevron-left"></i>
+        <div>Back</div>
+      </button>
+    </div>
+
+    <div id="chat"></div>
+
+    <div class="input-area">
+      <textarea name="new-msg" id="new-msg" placeholder="Write a message..."></textarea>
+      <button type="submit" id="send-btn">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
