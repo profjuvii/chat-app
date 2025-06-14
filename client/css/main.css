@@ -247,8 +247,8 @@ body {
     gap: 2px;
     border: none;
     background-color: #fff;
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 15px;
+    line-height: 15px;
     font-weight: 500;
     color: var(--dark-blue);
 }
@@ -392,19 +392,28 @@ body {
 
     /* === New contacts === */
     .new-cont-btns {
-        gap: 10px;
+        gap: 7px;
     }
 
     .new-cont-btns > button {
-        width: 33px;
-        height: 33px;
-        font-size: 27px;
+        width: 31px;
+        height: 31px;
         transition: none;
     }
 
     .new-cont-btns > button:active {
         transform: none;
         background-color: var(--light-border-color);
+    }
+
+    .reject-btn > i {
+        top: 6px;
+        left: 8px;
+    }
+
+    .accept-btn > i {
+        top: 6px;
+        left: 7px;
     }
 
     .reject-btn:hover, .accept-btn:hover {
