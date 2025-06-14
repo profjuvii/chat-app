@@ -63,7 +63,7 @@ export function pseudoChatFetch(userId) {
     return chats.find(chat => chat.user_id === userId);
 }
 
-export function pseudoContactsFetch() {
+export function pseudoAllContactsFetch() {
     return [
         {
             user_id: 2,
@@ -109,6 +109,19 @@ export function pseudoContactsFetch() {
                 content: "Awesome! I’ll make a few tweaks and send the final version tonight.",
                 timestamp: "2025-05-23T11:55:00Z"
             }
+        }
+    ];
+}
+
+export function pseudoNewContactsFetch() {
+    return [
+        {
+            user_id: 57,
+            username: "Olivia Green"
+        },
+        {
+            user_id: 61,
+            username: "Daniel"
         }
     ];
 }

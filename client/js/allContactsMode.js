@@ -1,4 +1,46 @@
-import { prepareText } from './utils.js';
+import { pseudoAllContactsFetch } from './pseudo.js'; 
+import { hideSidebarWindow } from './sidebar.js'
+import { renderActiveChat, showChatWindow } from './chat.js';
+import { prepareText, createHiddenTextElement } from './utils.js';
+
+export function renderAllContactsMode() {
+    const contactList = document.getElementById('contact-list');
+
+    // Load user contacts and apply manual text overflow handling
+    const allContacts = pseudoAllContactsFetch();
+    const hiddenElement = createHiddenTextElement('cont-hidden-text', '10px');
+    contactList.insertAdjacentElement('beforebegin', hiddenElement);
+
+    const renderAllContacts = () => {
+        contactList.innerHTML = '';
+        allContacts.forEach(contact => loadUserContact(contactList, hiddenElement, contact));
+    }
+    
+    renderAllContacts();
+
+    // Event handler for activation active chat
+    contactList.addEventListener('click', (e) => {
+        e.preventDefault();
+        const contact = e.target.closest('.contact');
+
+        if (contact && !contact.classList.contains('active')) {
+            unselectChat();
+
+            // For mobile version
+            if (window.innerWidth <= 640) {
+                hideSidebarWindow();
+                showChatWindow();
+            } else {
+                contact.classList.add('active');
+            }
+
+            const contactId = Number(contact.id);
+            window.activeContactId = contactId;
+
+            renderActiveChat(contactId);
+        }
+    });
+}
 
 export function unselectChat() {
     const contactList = document.getElementById('contact-list');
@@ -12,12 +54,14 @@ export function createUsernameBlock(hiddenElement, username, online, styles) {
     h4.textContent = username;
 
     // Online state
-    const span = document.createElement('span');
-    span.classList.add(online ? 'online' : 'offline');
-    span.textContent = '•';
-    span.style.marginLeft = '6px';
+    if (online !== null) {
+        const span = document.createElement('span');
+        span.classList.add(online ? 'online' : 'offline');
+        span.textContent = '•';
+        span.style.marginLeft = '6px';
+        h4.appendChild(span);
+    }
 
-    h4.appendChild(span);
     return h4;
 }
 
@@ -26,14 +70,16 @@ export function loadUserContact(contactList, hiddenElement, contact) {
         username: {
             fontSize: '16px',
             fontWeight: 700,
-            right: '65px'
+            right: '55px'
         },
         content: {
             fontSize: '14px',
             fontWeight: 400,
-            right: '45px'
+            right: '55px'
         }
     }
+
+    const { user_id, username, online, last_message } = contact;
 
     // Parent div block
     const div = document.createElement('div');
@@ -41,10 +87,9 @@ export function loadUserContact(contactList, hiddenElement, contact) {
     if (contact.user_id === window.activeContactId) {
         div.classList.add('active');
     }
-    div.id = contact.user_id;
+    div.id = user_id;
 
     // Create username block
-    const { username, online, last_message } = contact;
     const h4 = createUsernameBlock(hiddenElement, username, online, styles.username);
     div.appendChild(h4);
 

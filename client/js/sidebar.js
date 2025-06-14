@@ -1,45 +1,32 @@
-import { pseudoContactsFetch } from './pseudo.js';
-import { createHiddenTextElement } from './utils.js';
-import { loadUserContact, unselectChat } from './modeAll.js';
-import { renderActiveChat, showChatWindow } from './chat.js';
+import { renderAllContactsMode } from './allContactsMode.js';
+import { renderNewContactsMode } from './newContactsMode.js';
 
 export function initSidebarWindow() {
-    const contactList = document.getElementById('contact-list');
+    const allContactsBtn = document.getElementById('all-cont-btn');
+    const newContactsBtn = document.getElementById('new-cont-btn');
 
-    // Load user contacts and apply manual text overflow handling
-    const contacts = pseudoContactsFetch();
-    const hiddenElement = createHiddenTextElement('cont-hidden-text', '10px');
-    contactList.insertAdjacentElement('beforebegin', hiddenElement);
-
-    const renderContacts = () => {
-        contactList.innerHTML = '';
-        contacts.forEach(contact => loadUserContact(contactList, hiddenElement, contact));
-    }
-    
-    renderContacts();
-
-    // Event handler for activation active chat
-    contactList.addEventListener('click', (e) => {
-        e.preventDefault();
-        const contact = e.target.closest('.contact');
-
-        if (contact && !contact.classList.contains('active')) {
-            unselectChat();
-
-            // For mobile version
-            if (window.innerWidth <= 640) {
-                hideSidebarWindow();
-                showChatWindow();
-            } else {
-                contact.classList.add('active');
-            }
-
-            const contactId = Number(contact.id);
-            window.activeContactId = contactId;
-
-            renderActiveChat(contactId);
+    const activateAllContactsMode = () => {
+        if (!allContactsBtn.classList.contains('selected-mode')) {
+            allContactsBtn.classList.add('selected-mode');
         }
-    });
+        newContactsBtn.classList.remove('selected-mode');
+        renderAllContactsMode();
+    }
+
+    const activateNewContactsMode = () => {
+        if (!newContactsBtn.classList.contains('selected-mode')) {
+            newContactsBtn.classList.add('selected-mode');
+        }
+        allContactsBtn.classList.remove('selected-mode');
+        renderNewContactsMode();
+    }
+
+    // Initial mode
+    activateAllContactsMode();
+
+    // Event handlers for buttons in the top bar
+    allContactsBtn.addEventListener('click', activateAllContactsMode);
+    newContactsBtn.addEventListener('click', activateNewContactsMode);
 }
 
 export function showSidebarWindow() {

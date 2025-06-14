@@ -9,7 +9,10 @@
     --main-green: rgb(10, 230, 35);
     --main-blue: rgb(0, 140, 255);
     --dark-blue: rgb(32, 115, 217);
+    --rej-orange-color: rgb(255, 95, 45);
+    --acc-green-color: rgb(50, 220, 100);
     --light-gray: rgb(240, 240, 240);
+    --dark-gray: rgb(60, 60, 60);
     --light-border-color: rgb(220, 220, 220);
 }
 
@@ -23,6 +26,7 @@ body {
     grid-template-columns: 320px auto;
 }
 
+/* === Sidebar === */
 .top-bar {
     cursor: default;
     width: 100%;
@@ -30,7 +34,24 @@ body {
     border-bottom: 1px solid var(--light-border-color)
 }
 
-/* === Contacts === */
+.logout {
+    height: 40px;
+    padding: 10px;
+    border-top: 1px solid var(--light-border-color);
+
+    a {
+        align-self: self-start;
+        text-decoration: none;
+        color: #000;
+        font-size: 14px;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+/* === All contacts === */
 .contact-window {
     position: relative;
     width: 100%;
@@ -46,7 +67,7 @@ body {
     align-items: center;
 }
 
-.contact-bar button {
+.contact-bar > button {
     border: none;
     background-color: #fff;
     font-size: 10px;
@@ -56,7 +77,7 @@ body {
     transition: transform 0.1s linear;
 }
 
-.contact-bar button:active {
+.contact-bar > button:active {
     transform: scale(0.9);
 }
 
@@ -128,21 +149,75 @@ body {
     font-size: 13px;
 }
 
-.logout {
-    height: 40px;
+/* === New contacts === */
+.new-contact {
+    cursor: default;
+    position: relative;
+    width: 100%;
     padding: 10px;
-    border-top: 1px solid var(--light-border-color);
 
-    a {
-        align-self: self-start;
-        text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid var(--light-border-color);
+
+    white-space: nowrap;
+
+    h4 {
+        font-size: 16px;
         color: #000;
-        font-size: 14px;
     }
+}
 
-    a:hover {
-        text-decoration: underline;
-    }
+.new-cont-btns {
+    display: flex;
+    gap: 5px;
+}
+
+.new-cont-btns > button {
+    position: relative;
+    width: 25px;
+    height: 25px;
+
+    border-radius: 4px;
+    border: 1px solid var(--light-border-color);
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+
+    font-size: 17px;
+    transition: transform 0.1s linear,
+        border 0.3s ease,
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.new-cont-btns > button:active {
+    transform: scale(0.9);
+}
+
+.reject-btn > i {
+    position: absolute;
+    top: 3px;
+    left: 5px;
+}
+
+.accept-btn > i {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+}
+
+.reject-btn:hover {
+    border: 1px solid var(--rej-orange-color);
+    background-color: var(--rej-orange-color);
+    color: #fff;
+}
+
+.accept-btn:hover {
+    border: 1px solid var(--acc-green-color);
+    background-color: var(--acc-green-color);
+    color: #fff;
 }
 
 /* === Chat === */
@@ -294,8 +369,12 @@ body {
         display: block;
     }
 
-    .contact-bar button:active,
-    #send-btn:active {
+    /* === Sidebar === */
+    .contact-bar > button {
+        transition: none;
+    }
+
+    .contact-bar button:active, #send-btn:active {
         transform: none;
     }
 
@@ -303,9 +382,24 @@ body {
         display: flex;
     }
 
-    /* === Contacts === */
+    /* === All contacts === */
     .contact:active {
         background-color: var(--light-border-color);
+    }
+
+    /* === New contacts === */
+    .new-cont-btns > button {
+        transition: none;
+    }
+
+    .new-cont-btns > button:active {
+        transform: none;
+    }
+
+    .reject-btn:hover, .accept-btn:hover {
+        border: 1px solid var(--light-border-color);
+        background-color: var(--light-gray);
+        color: var(--dark-gray);
     }
 
     /* === Chat === */
@@ -315,5 +409,13 @@ body {
 
     .chat-bar {
         display: flex;
+    }
+
+    #send-btn {
+        transition: none;
+    }
+
+    #send-btn:active {
+        transform: none;
     }
 }

@@ -1,6 +1,6 @@
 import { pseudoChatFetch } from './pseudo.js';
 import { createHiddenTextElement } from './utils.js';
-import { createUsernameBlock, unselectChat } from './modeAll.js';
+import { createUsernameBlock, unselectChat } from './allContactsMode.js';
 import { showSidebarWindow } from './sidebar.js';
 
 export function initChatWindow() {
@@ -163,6 +163,5 @@ function addNewMessage() {
     if (!message) return;
 
     renderMessage(chat, 'me', message, 'now');
-
     resetInputField();
 }
