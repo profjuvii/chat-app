@@ -120,6 +120,7 @@ body {
 
     div {
         font-size: 14px;
+        font-weight: 500px;
         opacity: 0.6;
     }
 }
@@ -174,7 +175,7 @@ body {
 
 .new-cont-btns {
     display: flex;
-    gap: 5px;
+    gap: 7px;
 }
 
 .new-cont-btns > button {
@@ -274,6 +275,7 @@ body {
     padding: 10px 46px 10px 10px;
     border-radius: 20px;
     font-size: 14px;
+    font-weight: 500px;
 }
 
 .msg::after {
@@ -391,10 +393,6 @@ body {
     }
 
     /* === New contacts === */
-    .new-cont-btns {
-        gap: 7px;
-    }
-
     .new-cont-btns > button {
         width: 31px;
         height: 31px;
