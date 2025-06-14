@@ -1,9 +1,14 @@
+import { createHiddenTextElement } from './utils.js';
 import { renderAllContactsMode } from './allContactsMode.js';
 import { renderNewContactsMode } from './newContactsMode.js';
 
 export function initSidebarWindow() {
     const allContactsBtn = document.getElementById('all-cont-btn');
     const newContactsBtn = document.getElementById('new-cont-btn');
+
+    const contactList = document.getElementById('contact-list');
+    const hiddenElement = createHiddenTextElement('cont-hidden-text', '10px');
+    contactList.insertAdjacentElement('beforebegin', hiddenElement);
 
     const activateAllContactsMode = () => {
         if (!allContactsBtn.classList.contains('selected-mode')) {

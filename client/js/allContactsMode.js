@@ -1,15 +1,14 @@
 import { pseudoAllContactsFetch } from './pseudo.js'; 
 import { hideSidebarWindow } from './sidebar.js'
 import { renderActiveChat, showChatWindow } from './chat.js';
-import { prepareText, createHiddenTextElement } from './utils.js';
+import { prepareText } from './utils.js';
 
 export function renderAllContactsMode() {
     const contactList = document.getElementById('contact-list');
+    const hiddenElement = document.getElementById('cont-hidden-text');
 
     // Load user contacts and apply manual text overflow handling
     const allContacts = pseudoAllContactsFetch();
-    const hiddenElement = createHiddenTextElement('cont-hidden-text', '10px');
-    contactList.insertAdjacentElement('beforebegin', hiddenElement);
 
     const renderAllContacts = () => {
         contactList.innerHTML = '';

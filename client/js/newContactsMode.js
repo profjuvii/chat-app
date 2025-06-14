@@ -1,16 +1,13 @@
 import { pseudoNewContactsFetch } from './pseudo.js';
-import { createHiddenTextElement } from './utils.js';
 import { createUsernameBlock } from './allContactsMode.js';
 
 export function renderNewContactsMode() {
     const contactList = document.getElementById('contact-list');
+    const hiddenElement = document.getElementById('cont-hidden-text');
     
     // Load user contacts and apply manual text overflow handling
     const newContacts = pseudoNewContactsFetch();
     if (!newContacts) return;
-
-    const hiddenElement = createHiddenTextElement('cont-hidden-text', '10px');
-    contactList.insertAdjacentElement('beforebegin', hiddenElement);
 
     const renderNewContacts = () => {
         contactList.innerHTML = '';
