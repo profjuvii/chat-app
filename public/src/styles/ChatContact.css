@@ -1,0 +1,25 @@
+.contact--chats {
+    cursor: pointer;
+    width: 100%;
+    height: 63px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+    border-bottom: 1px solid #ccc;
+}
+
+.contact--chats > p {
+    font-size: 14px;
+    color: #6c6c6d;
+}
+
+.contact--chats.active {
+    border-bottom: none;
+    background-color: #0080ff;
+}
+
+.contact--chats.active > * {
+    color: #fff;
+}

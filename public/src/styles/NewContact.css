@@ -1,0 +1,42 @@
+.contact--new {
+    width: 100%;
+    height: 63px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+    border-bottom: 1px solid #ccc;
+}
+
+.buttons--new {
+    display: flex;
+    gap: 10px;
+}
+
+.buttons--new > button {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: #fff;
+    font-size: 22px;
+    color: #6c6c6d;
+    transition: transform 0.2s ease;
+}
+
+.buttons--new > button > p {
+    font-size: 10px;
+}
+
+.buttons--new > button:hover {
+    color: #0080ff;
+}
+
+.buttons--new > button.red:hover {
+    color: #ff0000;
+}
+
+.buttons--new > button:active {
+    transform: scale(0.9);
+}
