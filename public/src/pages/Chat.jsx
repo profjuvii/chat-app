@@ -17,9 +17,13 @@ const Chat = () => {
   }, [messages]);
 
   const handleSend = () => {
-    if (!input.trim()) return setInput("");
-    sendMessage(input.trim());
+    if (input.trim()) {
+      sendMessage(input.trim());
+    }
     setInput("");
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+    }
   };
 
   const inputHandler = (e) => {
@@ -32,9 +36,6 @@ const Chat = () => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSend();
-      if (textareaRef.current) {
-        textareaRef.current.style.height = "auto";
-      }
     }
   };
 

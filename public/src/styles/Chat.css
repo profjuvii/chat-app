@@ -70,6 +70,7 @@
     line-height: 18px;
     font-size: var(--font-size-base);
     word-break: break-all;
+    white-space: pre-wrap;
 }
 
 .msg.friend::after {
