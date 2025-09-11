@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import "../styles/NewContact.css";
 
-function ChatContact({ name, onClick }) {
+const ChatContact = ({ name, onClick }) => {
   const [add, remove] = onClick();
 
   return (
@@ -21,6 +21,6 @@ function ChatContact({ name, onClick }) {
       </div>
     </div>
   );
-}
+};
 
 export default ChatContact;

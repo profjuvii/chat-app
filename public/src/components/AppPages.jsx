@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
-import { useIsMobile } from "../hooks/useIsMobile.jsx";
+import { useIsMobile } from "../hooks/useIsMobile";
+import { ChatProvider } from "../context/ChatProvider";
 import "../styles/AppPages.css";
-import Messages from "../pages/Messages.jsx";
-import Chat from "../pages/Chat.jsx";
-import { ChatProvider } from "../context/ChatProvider.jsx";
+import Messages from "../pages/Messages";
+import Chat from "../pages/Chat";
 
 function DesktopChatWrapper() {
   return (

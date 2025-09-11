@@ -1,21 +1,21 @@
 import { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { useChat } from "../context/ChatContext";
 import "../styles/Chat.css";
-import { useChat } from "../context/ChatContext.jsx";
 
-function Chat() {
+const Chat = () => {
   const textareaRef = useRef(null);
-  const { activeUser, messages, sendMessage } = useChat();
   const [input, setInput] = useState("");
+  const { activeUser, messages, sendMessage } = useChat();
 
   const handleSend = () => {
     if (!input.trim()) return;
-    sendMessage({ who: "me", text: input });
+    sendMessage(input.trim());
     setInput("");
   };
 
-  if (!activeUser.name) {
+  if (!activeUser?.name) {
     return (
       <div className="empty--chat">
         <p>Select a chat to start messaging</p>
@@ -61,6 +61,6 @@ function Chat() {
       </div>
     </div>
   );
-}
+};
 
 export default Chat;

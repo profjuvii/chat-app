@@ -1,3 +1,5 @@
+@import "./variables.css";
+
 .page--auth {
     width: 100%;
     height: 100vh;
@@ -15,7 +17,7 @@
     align-items: center;
     gap: 20px;
     border-radius: 16px;
-    background-color: #fff;
+    background-color: var(--color-bg);
     box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -29,8 +31,8 @@
     width: 100%;
     padding: 6px;
     border: none;
-    border-bottom: 1px solid #ccc;
-    font-size: 14px;
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-base);
     z-index: 100;
 }
 
@@ -40,8 +42,8 @@
     transform-origin: top left;
     top: 6px;
     left: 6px;
-    font-size: 14px;
-    color: #6c6c6d;
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
     pointer-events: none;
     z-index: 101;
     transition: transform 0.2s ease, font-size 0.2s ease;
@@ -50,28 +52,28 @@
 .input-field--auth > p {
     text-align: right;
     margin: 6px 6px 0 0;
-    font-size: 12px;
-    color: #6c6c6d;
+    font-size: var(--font-size-small);
+    color: var(--color-text-secondary);
 }
 
 /* Invalid mode */
 .input-field--auth.invalid > input {
-    border-bottom: 1px solid #ff0000;
+    border-bottom: 1px solid var(--color-danger);
 }
 
 .input-field--auth.invalid > label,
 .input-field--auth.invalid > p {
-    color: #ff0000;
+    color: var(--color-danger);
 }
 
 /* Manual placeholder */
 .input-field--auth > input:focus {
-    border-bottom: 1px solid #0080ff;
+    border-bottom: 1px solid var(--color-primary);
 }
 
 .input-field--auth > input:focus + label {
     transform: translateY(-16px);
-    color: #0080ff;
+    color: var(--color-primary);
     font-size: 11px;
 }
 
@@ -93,26 +95,26 @@
     font-weight: 500;
     border-radius: 4px;
     border: none;
-    background-color: #0080ff;
-    color: #fff;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
     transition: background-color 0.3s ease;
 }
 
 .send-btn:hover {
-    background-color: #0070e1;
+    background-color: var(--color-primary-dark);
 }
 
 .info {
     text-align: center;
     margin-top: 16px;
-    font-size: 12px;
+    font-size: var(--font-size-small);
 }
 
 .link {
     cursor: pointer;
-    font-size: 12px;
+    font-size: var(--font-size-small);
     font-weight: 500;
-    color: #0080ff;
+    color: var(--color-primary);
     text-decoration: none;
 }
 

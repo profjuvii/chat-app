@@ -1,6 +1,6 @@
 import "../styles/ChatContact.css";
 
-function ChatContact({ name, text, active, onClick }) {
+const ChatContact = ({ name, text, active, onClick }) => {
   return (
     <div
       className={`contact--chats ${active ? "active" : ""}`}
@@ -10,6 +10,6 @@ function ChatContact({ name, text, active, onClick }) {
       <p>{text}</p>
     </div>
   );
-}
+};
 
 export default ChatContact;

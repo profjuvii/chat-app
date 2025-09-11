@@ -1,31 +1,23 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { ChatContext } from "./ChatContext";
 
-export function ChatProvider({ children }) {
-  const [activeUser, setActiveUser] = useState({ name: "", online: false });
+export const ChatProvider = ({ children }) => {
+  const [activeUser, setActiveUser] = useState(null);
   const [messages, setMessages] = useState([]);
 
-  const selectUser = useCallback((user) => {
-    setActiveUser({
-      name: user.name,
-      online: user.online ?? false,
-    });
-    setMessages(user.messages || []);
-  }, []);
+  const selectUser = ({ name, online, messages }) => {
+    setActiveUser({ name, online });
+    setMessages(messages || []);
+  };
 
-  const sendMessage = useCallback(({ who = "me", text }) => {
-    if (!text?.trim()) return;
-    setMessages((prev) => [
-      ...prev,
-      { id: Date.now(), who, text: text.trim() },
-    ]);
-  }, []);
+  const sendMessage = (msg) =>
+    setMessages((prev) => [...prev, { who: "me", text: msg }]);
 
   return (
     <ChatContext.Provider
-      value={{ activeUser, messages, selectUser, sendMessage }}
+      value={{ activeUser, selectUser, messages, sendMessage }}
     >
       {children}
     </ChatContext.Provider>
   );
-}
+};

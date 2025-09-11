@@ -7,11 +7,12 @@ import {
   faArrowRightFromBracket,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
+import { useChat } from "../context/ChatContext";
 import "../styles/Messages.css";
-import ChatContact from "../components/ChatContact.jsx";
-import NewContact from "../components/NewContact.jsx";
-import { useChat } from "../context/ChatContext.jsx";
+import ChatContact from "../components/ChatContact";
+import NewContact from "../components/NewContact";
 
+// Some data for chats category
 const loadChats = [
   {
     name: "John",
@@ -30,20 +31,21 @@ const loadChats = [
   },
 ];
 
+// Some data for new category
 const loadNew = [{ name: "John" }, { name: "Emma" }, { name: "Josh" }];
 
-function Messages() {
+const Messages = () => {
   const [chats, setChats] = useState(loadChats);
   const [newContacts, setNewContacts] = useState(loadNew);
-  const [chatsMode, setChatsMode] = useState(true);
+  const [isChatsMode, setIsChatsMode] = useState(true);
   const navigate = useNavigate();
   const { selectUser } = useChat();
 
   const clickButtonHandler = (e) => {
     const name = e.currentTarget.dataset.name;
     if (name === "logout") return navigate("/login");
-    if (name === "chats") return setChatsMode(true);
-    setChatsMode(false);
+    if (name === "chats") return setIsChatsMode(true);
+    setIsChatsMode(false);
   };
 
   const clickChatHandler = (chat) => {
@@ -91,13 +93,15 @@ function Messages() {
             type="search"
             name="search-bar"
             id="search-bar"
-            placeholder={chatsMode ? "Search chats..." : "Find new friends..."}
+            placeholder={
+              isChatsMode ? "Search chats..." : "Find new friends..."
+            }
           />
         </div>
       </div>
 
       <div className="main--messages">
-        {chatsMode
+        {isChatsMode
           ? chats.map((chat) => (
               <ChatContact
                 key={chat.name}
@@ -118,7 +122,7 @@ function Messages() {
 
       <div className="bottom-panel--messages">
         <button
-          className={!chatsMode ? "active" : ""}
+          className={!isChatsMode ? "active" : ""}
           data-name="new"
           onClick={clickButtonHandler}
         >
@@ -127,7 +131,7 @@ function Messages() {
         </button>
 
         <button
-          className={chatsMode ? "active" : ""}
+          className={isChatsMode ? "active" : ""}
           data-name="chats"
           onClick={clickButtonHandler}
         >
@@ -142,6 +146,6 @@ function Messages() {
       </div>
     </div>
   );
-}
+};
 
 export default Messages;
