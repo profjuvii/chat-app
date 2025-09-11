@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { useChat } from "../context/ChatContext";
@@ -6,13 +6,36 @@ import "../styles/Chat.css";
 
 const Chat = () => {
   const textareaRef = useRef(null);
+  const chatRef = useRef(null);
   const [input, setInput] = useState("");
   const { activeUser, messages, sendMessage } = useChat();
 
+  useEffect(() => {
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   const handleSend = () => {
-    if (!input.trim()) return;
+    if (!input.trim()) return setInput("");
     sendMessage(input.trim());
     setInput("");
+  };
+
+  const inputHandler = (e) => {
+    const el = e.target;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
+  };
+
+  const enterHandler = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+      if (textareaRef.current) {
+        textareaRef.current.style.height = "auto";
+      }
+    }
   };
 
   if (!activeUser?.name) {
@@ -32,11 +55,11 @@ const Chat = () => {
         </p>
       </div>
 
-      <div className="main--chat">
+      <div ref={chatRef} className="main--chat">
         {messages.map((m) => (
-          <div key={m.id || m.text} className={`msg ${m.who}`}>
+          <pre key={m.id || m.text} className={`msg ${m.who}`}>
             {m.text}
-          </div>
+          </pre>
         ))}
       </div>
 
@@ -52,6 +75,8 @@ const Chat = () => {
             placeholder=" "
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onInput={inputHandler}
+            onKeyDown={enterHandler}
           ></textarea>
           <label htmlFor="input-text">Write new message...</label>
         </div>

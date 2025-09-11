@@ -62,7 +62,7 @@
 
 /* === Bottom panel === */
 .bottom-panel--messages {
-    height: 53px;
+    height: 69px;
     display: flex;
     justify-content: space-around;
     align-items: center;

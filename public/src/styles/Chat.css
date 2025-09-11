@@ -55,14 +55,21 @@
     background-color: var(--color-bg);
 }
 
+.main--chat::-webkit-scrollbar {
+    display: none;
+}
+
 .msg {
+    max-width: 400px;
+    margin-right: 40px;
     position: relative;
     align-self: flex-start;
     padding: 7px 10px;
-    border-radius: 20px;
+    border-radius: 16px;
     background-color: #e8e8e8;
     line-height: 18px;
     font-size: var(--font-size-base);
+    word-break: break-all;
 }
 
 .msg.friend::after {
@@ -76,6 +83,8 @@
 }
 
 .msg.me {
+    margin-right: 0;
+    margin-left: 40px;
     align-self: flex-end;
     background-color: var(--color-primary);
     color: var(--color-text-light);
@@ -94,7 +103,7 @@
 /* === Bottom panel === */
 .bottom-panel--chat {
     width: 100%;
-    min-height: 53px;
+    min-height: 69px;
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -108,7 +117,7 @@
     cursor: text;
     position: relative;
     width: 100%;
-    min-height: 32px;
+    min-height: 48px;
     padding: 7px 10px;
     display: flex;
     align-items: center;
@@ -117,8 +126,9 @@
 }
 
 .input-field--chat > textarea {
+    overflow-y: hidden;
     width: 100%;
-    height: 18px;
+    max-height: 204px;
     border: none;
     background-color: var(--color-bg);
     font-size: var(--font-size-base);
@@ -130,6 +140,7 @@
 .input-field--chat > label {
     cursor: text;
     position: absolute;
+    top: 7px;
     left: 10px;
     color: var(--color-text-secondary);
     font-size: var(--font-size-base);
