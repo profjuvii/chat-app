@@ -2,7 +2,7 @@
 
 .contact--new {
     width: 100%;
-    height: 63px;
+    height: 60px;
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -25,21 +25,18 @@
     background-color: var(--color-bg);
     font-size: 22px;
     color: var(--color-text-secondary);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .buttons--new > button > p {
     font-size: var(--font-size-xs);
 }
 
-.buttons--new > button:hover {
+.buttons--new > button:active {
+    transform: scale(0.9);
     color: var(--color-primary);
 }
 
-.buttons--new > button.red:hover {
+.buttons--new > button.red:active {
     color: var(--color-danger);
-}
-
-.buttons--new > button:active {
-    transform: scale(0.9);
 }

@@ -4,9 +4,9 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Login from "./pages/Login.jsx";
-import Register from "./pages/Register.jsx";
-import AppPages from "./components/AppPages.jsx";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import AppPages from "./components/AppPages";
 
 function App() {
   return (

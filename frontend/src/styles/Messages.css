@@ -62,7 +62,7 @@
 
 /* === Bottom panel === */
 .bottom-panel--messages {
-    height: 69px;
+    height: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -78,7 +78,7 @@
     background-color: var(--color-bg-secondary);
     font-size: 22px;
     color: var(--color-text-secondary);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .bottom-panel--messages > button > p {
@@ -90,5 +90,6 @@
 }
 
 .bottom-panel--messages > button:active {
+    color: var(--color-primary);
     transform: scale(0.9);
 }
